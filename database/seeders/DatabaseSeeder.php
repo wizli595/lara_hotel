@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             ReservationSeeder::class,
             CommentSeeder::class,
             LikeSeeder::class,
-
         ]);
     }
 }

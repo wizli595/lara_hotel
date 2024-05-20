@@ -12,7 +12,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservations.index', [
+            'reservations' => Reservation::all()
+        ]);
     }
 
     /**
@@ -36,7 +38,12 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $client = $reservation->client;
+        $reservations = $client->reservations;
+        return view('reservations.show', [
+            'client' => $client,
+            'reservations' => $reservations
+        ]);
     }
 
     /**
