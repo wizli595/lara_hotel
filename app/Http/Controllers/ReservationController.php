@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -49,9 +50,11 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reservation $reservation)
+    public function edit($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $rooms = Room::all();
+        return view('reservations.edit',compact('reservation','rooms'));
     }
 
     /**
@@ -59,7 +62,16 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $data = $request->validate([
+            'checkin' => 'required',
+            'checkout' => 'required',
+            'total' => 'required',
+            'room_id' => 'required',
+        ]);
+
+        $reservation->update($data);
+        return redirect()->route('reservations.index');
+
     }
 
     /**

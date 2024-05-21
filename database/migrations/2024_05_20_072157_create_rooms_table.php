@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('phone');
             $table->string('room_number');
             $table->foreignIdFor(Categorie::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Hotel::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Hotel::class,'idhotel')->constrained('hotels', 'idhotel');
+
+            $table->foreignId('idhotel')->constrained('hotels', 'idhotel')->cascadeOnDelete();
+            
             $table->timestamps();
         });
     }

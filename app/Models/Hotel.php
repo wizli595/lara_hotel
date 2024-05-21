@@ -15,6 +15,7 @@ class Hotel extends Model
         'cph',
         'stars',
     ];
+    protected $primaryKey = 'idhotel';
     public function rooms()
     {
         return $this->hasMany(Room::class);
